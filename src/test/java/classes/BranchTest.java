@@ -10,32 +10,32 @@ public class BranchTest {
 
     @Before
     public void setUp() throws Exception {
-        branch = new Branch("Texas");
-        branch.newCustomer("Austin", 400.00);
+        branch = new Branch("Kumasi");
+        branch.newCustomer("Holla", 400.00);
     }
 
     @Test
     public void getName() {
         assertEquals("Texas", branch.getName());
-        assertNotEquals("Adelaide", branch.getName());
+        assertNotEquals("Accra", branch.getName());
     }
 
 
     @Test
     public void getCustomers() {
-        assertEquals("Austin", branch.getCustomers().get(0).getName());
+        assertEquals("Holla", branch.getCustomers().get(0).getName());
         assertNotEquals("Robert", branch.getCustomers().get(0));
     }
 
 
     @Test
     public void newCustomer() {
-        assertTrue(branch.newCustomer("Victor", 300.00));
+        assertTrue(branch.newCustomer("Bismark", 300.00));
     }
 
     @Test
     public void addCustomerTransaction() {
-        assertTrue(branch.addCustomerTransaction("Austin",400.00));
+        assertTrue(branch.addCustomerTransaction("Holla",400.00));
         assertFalse(branch.addCustomerTransaction("Simon",700.00));
     }
 }

@@ -8,6 +8,6 @@ public interface IBranch {
 
     String getName();
     ArrayList<Customer> getCustomers();
-    boolean newCustomer( String customerName, double initialTransaction);
-    boolean addCustomerTransaction(String customerName,double transaction);
+    boolean newCustomer( String name, double transaction);
+    boolean addCustomerTransaction(String name,double transaction);
 }

@@ -8,12 +8,12 @@ public class Customer implements ICustomer {
     private String name;
     private ArrayList<Double> transactions;
 
-    public Customer(String name, double initialTransaction) {
-        initialTransaction = initialTransaction < 0 ? 0 : initialTransaction;
-        if (!name.equals("")) {
+    public Customer(String name, double transaction) {
+        transaction = transaction < 0 ? 0 : transaction;
+        if (!(name.equals(""))) {
             this.name = name;
             this.transactions = new ArrayList<>();
-            this.transactions.add(initialTransaction);
+            this.transactions.add(transaction);
         }
     }
 
@@ -23,13 +23,13 @@ public class Customer implements ICustomer {
     }
     @Override
     public ArrayList<Double> getTransactions() {
-        return this.transactions;
+        return transactions;
     }
 
     @Override
     public void addTransaction(double transaction) {
-        if (transaction >= 0) {
-            this.transactions.add(transaction);
+        if (transaction == 0 & transaction >0) {
+            transactions.add(transaction);
         }
     }
 }

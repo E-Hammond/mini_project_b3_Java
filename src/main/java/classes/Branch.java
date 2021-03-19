@@ -9,8 +9,8 @@ public class Branch implements IBranch {
     private ArrayList<Customer> customers;
 
     public Branch (String name) {
-        this.name = name;
-        this.customers = new ArrayList<>();
+        name = name;
+        customers = new ArrayList<>();
     }
 
     @Override
@@ -26,9 +26,9 @@ public class Branch implements IBranch {
 
 
     @Override
-    public boolean newCustomer( String customerName, double initialTransaction){
-        if(findCustomer(customerName)==null && !customerName.equals("")&& initialTransaction>=0){
-            Customer customer = new Customer(customerName, initialTransaction);
+    public boolean newCustomer( String name, double transaction){
+        if(findCustomer(name)==null & !(name.equals("")) & transaction>=0){
+            Customer customer = new Customer(name, transaction);
             this.customers.add(customer);
             return true;
         }
@@ -36,19 +36,19 @@ public class Branch implements IBranch {
     }
 
     @Override
-    public boolean addCustomerTransaction(String customerName, double transaction) {
+    public boolean addCustomerTransaction(String name, double transaction) {
 
-        if((findCustomer(customerName) != null) && transaction > 0){
-            findCustomer(customerName).addTransaction(transaction);
+        if((!(findCustomer(name) == null)) & transaction > 0){
+            findCustomer(name).addTransaction(transaction);
             return true;
         }
         else return false;
     }
 
-    private Customer findCustomer(String customerName){
+    private Customer findCustomer(String name){
 
-        for(Customer customer: this.customers){
-            if(customer.getName().equalsIgnoreCase(customerName)){
+        for(Customer customer: customers){
+            if(customer.getName().equalsIgnoreCase(name)){
                 return customer;
             }
         }

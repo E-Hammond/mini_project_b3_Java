@@ -15,20 +15,19 @@ public class Bank implements IBank {
 
     @Override
     public boolean addBranch(String branchName) {
-        if(findBranch(branchName)==null && !branchName.equals("")){
+        if(findBranch(branchName)==null && !(branchName.equals(""))){
             Branch branch = new Branch(branchName);
-            this.branches.add(branch);
+            branches.add(branch);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     @Override
-    public boolean addCustomer(String branchName, String customerName, double initialTransaction) {
-        if(findBranch(branchName) != null){
-            return findBranch(branchName).newCustomer(customerName, initialTransaction);
+    public boolean addCustomer(String branchName, String customerName, double transactions) {
+        if(!(findBranch(branchName) == null)){
+            return findBranch(branchName).newCustomer(customerName, transactions);
         }
-        else return false;
+         return false;
     }
 
     @Override
@@ -41,20 +40,20 @@ public class Bank implements IBank {
 
 @Override
 public boolean listCustomers(String branchName, boolean printTransactions) {
-    if(findBranch(branchName) != null){
-        Branch branch = findBranch(branchName);
+    if(!(findBranch(branchName) == null)){
+        Branch branchObject = findBranch(branchName);
         System.out.print("Customer details for branch " + branchName);
-        if(printTransactions){
-            for(Customer customer: branch.getCustomers()){
-                System.out.printf("\nCustomer: %s[%d]", customer.getName(), branch.getCustomers().indexOf(customer)+1);
+        if(printTransactions==true){
+            for(Customer customer: branchObject.getCustomers()){
+                System.out.printf("\nCustomer: %s[%d]", customer.getName(), branchObject.getCustomers().indexOf(customer)+1);
                 System.out.print("\nTransactions");
                 for(int i = 0; i < customer.getTransactions().size(); i++){
                     System.out.printf("\n[%d] Amount %f", i+1, customer.getTransactions().get(i));
                 }
             }
         }
-        else for(Customer customer: branch.getCustomers()) {
-            System.out.printf("\nCustomer: %s[%d]", customer.getName(), branch.getCustomers().indexOf(customer)+1);
+         for(Customer customer: branchObject.getCustomers()) {
+            System.out.printf("\nCustomer: %s[%d]", customer.getName(), branchObject.getCustomers().indexOf(customer)+1);
         }
         return true;
     }
@@ -62,9 +61,9 @@ public boolean listCustomers(String branchName, boolean printTransactions) {
 }
 
     private Branch findBranch(String branchName) {
-        for(Branch branch: this.branches){
-            if(branch.getName().equalsIgnoreCase(branchName)){
-                return branch;
+        for(Branch branchObject: branches){
+            if(branchObject.getName().equalsIgnoreCase(branchName)){
+                return branchObject;
             }
         }
         return null;
